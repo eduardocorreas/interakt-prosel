@@ -1,26 +1,42 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {BrowserRouter as Router, Route, Switch} from  'react-router-dom';
+import { Layout } from 'antd';
+import SiderComponent from './components/layout/Sider'
+import HeaderTopComponent from './components/layout/HeaderTop'
+import HeaderContentComponent from './components/layout/HeaderContent';
+import Home from './pages/home';
+import Products from './pages/products';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+const { Content } = Layout;
+
+export default function App(){
+  return(
+    <>
+    <Router>
+    <HeaderTopComponent/>
+    <Layout style={{height:"100vh"}}>
+      <SiderComponent/>
+      <Layout>
+        <HeaderContentComponent/>
+        <Content
+          style={{
+            margin: '24px 16px',
+            padding: 24,
+            background: '#fff',
+            minHeight: 280,
+          }}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+          <div>
+            <Switch>
+              <Route path='/' exact component={Home}/>
+              <Route path='/products' exact component={Products}/>
+            </Switch>
+          </div>
+        </Content>
+      </Layout>
+    </Layout>
+          </Router>
+    </>
+    
+  )
 }
-
-export default App;
