@@ -3,7 +3,6 @@ import {BrowserRouter as Router, Route, Switch} from  'react-router-dom';
 import { Layout } from 'antd';
 import SiderComponent from './components/layout/Sider'
 import HeaderTopComponent from './components/layout/HeaderTop'
-import HeaderContentComponent from './components/layout/HeaderContent';
 import Home from './pages/home';
 import Products from './pages/products';
 
@@ -17,15 +16,14 @@ export default function App(){
     <Layout style={{height:"100vh"}}>
       <SiderComponent/>
       <Layout>
-        <HeaderContentComponent/>
         <Content
           style={{
-            margin: '24px 16px',
-            padding: 24,
+            padding: 10,
             background: '#fff',
             minHeight: 280,
           }}
-        >
+          >
+          
           <div>
             <Switch>
               <Route path='/' exact component={Home}/>

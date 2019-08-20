@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
-
 import {List, Row, Col} from 'antd'
 
+import HeaderContentComponent from '../../components/layout/HeaderContent'
 import ListEntregas from '../../components/ListEntregas'
 import './styles.css';
 
@@ -22,7 +22,8 @@ export default function Home() {
   ])
   
     return (
-
+      <>
+      <HeaderContentComponent title={"Painel de Entregas"}/>
       <Row>
       <Col span={12} offset={6}>
       <List
@@ -37,5 +38,6 @@ export default function Home() {
     /> 
       </Col>
     </Row>
+    </>
          );
 }
