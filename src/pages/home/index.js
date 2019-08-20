@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 
-import {List} from 'antd'
+import {List, Row, Col} from 'antd'
 
-
+import ListEntregas from '../../components/ListEntregas'
 import './styles.css';
 
 
@@ -11,21 +11,31 @@ export default function Home() {
   const [data] = useState([
     {
       id: 1,
-      descricao: 'Dsadsd',
-      preco:'dasdas'
-    }
+      descricao: 'Produto 1',
+      status:'Pendente'
+    },
+    {
+      id: 2,
+      descricao: 'Produto 2',
+      status:'Entregue'
+    },
   ])
   
     return (
+
+      <Row>
+      <Col span={12} offset={6}>
       <List
-      header={<div><strong>Lista de Produtos</strong></div>}
-      footer={<div>Footer</div>}
+      header={<div><strong>Acompanhamento de Entregas</strong></div>}
       bordered
       dataSource={data}
       renderItem={item => (
         <List.Item>
-          {item.product}
+          <ListEntregas item={item}/>
         </List.Item>
       )}
-    />    );
+    /> 
+      </Col>
+    </Row>
+         );
 }
