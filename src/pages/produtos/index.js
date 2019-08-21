@@ -63,7 +63,7 @@ export default function Produtos() {
         </Col>
       </Col>
         <Col span={12} offset={6} style={{marginTop: 30, marginBottom:30}}>
-            <Button type="primary" block onClick={() => salvarProduto()} >Salvar</Button> 
+            <Button type="primary" className="btn-submit" block onClick={() => salvarProduto()} >Salvar</Button> 
         </Col>
     </Row>
       <Row>
