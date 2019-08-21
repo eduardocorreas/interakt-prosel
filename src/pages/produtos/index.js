@@ -26,6 +26,11 @@ export default function Produtos() {
   const [produto, setProduto] = useState("")
   const [preco, setPreco] = useState(0)
 
+  
+  function salvarProduto(){
+      console.log(produto, preco)
+  }
+  
   function handleProduto(e){
     e.preventDefault();
     setProduto(e.target.value)
@@ -58,13 +63,13 @@ export default function Produtos() {
         </Col>
       </Col>
         <Col span={12} offset={6} style={{marginTop: 30, marginBottom:30}}>
-            <Button type="primary" block >Salvar</Button> 
+            <Button type="primary" block onClick={() => salvarProduto()} >Salvar</Button> 
         </Col>
     </Row>
       <Row>
       <Col span={12} offset={6}>
       <List
-      header={<div><strong>Acompanhamento de Entregas</strong></div>}
+      header={<div><strong>Lista de Produtos</strong></div>}
       bordered
       dataSource={data}
       renderItem={item => (
