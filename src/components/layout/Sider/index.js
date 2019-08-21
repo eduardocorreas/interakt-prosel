@@ -23,7 +23,7 @@ const SiderComponent = () =>{
               </Link>
             </Menu.Item>
             <Menu.Item key="3">
-            <Link to='/products' >
+            <Link to='/produtos' >
               <Icon type="gold" />
               <span>Produtos</span>
               </Link>

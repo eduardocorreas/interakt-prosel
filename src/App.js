@@ -4,7 +4,7 @@ import { Layout } from 'antd';
 import SiderComponent from './components/layout/Sider'
 import HeaderTopComponent from './components/layout/HeaderTop'
 import Home from './pages/home';
-import Products from './pages/products';
+import Produtos from './pages/produtos';
 
 const { Content } = Layout;
 
@@ -27,7 +27,7 @@ export default function App(){
           <div>
             <Switch>
               <Route path='/' exact component={Home}/>
-              <Route path='/products' exact component={Products}/>
+              <Route path='/produtos' exact component={Produtos}/>
             </Switch>
           </div>
         </Content>
