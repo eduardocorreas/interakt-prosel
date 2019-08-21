@@ -13,13 +13,11 @@ export default function Produtos() {
       id: 1,
       descricao: 'Produto 1',
       preco: '10,00',
-      status:'Pendente'
     },
     {
       id: 2,
       descricao: 'Produto 2',
       preco: '20,00',
-      status:'Entregue'
     },
   ])
 
