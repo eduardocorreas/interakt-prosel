@@ -5,6 +5,7 @@ import SiderComponent from './components/layout/Sider'
 import HeaderTopComponent from './components/layout/HeaderTop'
 import Home from './pages/home';
 import Produtos from './pages/produtos';
+import Entregas from './pages/entregas';
 
 const { Content } = Layout;
 
@@ -27,7 +28,8 @@ export default function App(){
           <div>
             <Switch>
               <Route path='/' exact component={Home}/>
-              <Route path='/produtos' exact component={Produtos}/>
+              <Route path='/produtos' component={Produtos}/>
+              <Route path='/entregas' component={Entregas}/>
             </Switch>
           </div>
         </Content>
