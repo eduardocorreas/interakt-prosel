@@ -5,33 +5,39 @@ import HeaderContentComponent from '../../components/layout/HeaderContent'
 import ListProdutos from '../../components/ListProdutos'
 import './styles.css';
 
+import {graphql, useMutation} from 'react-apollo'
+import gql from 'graphql-tag'
 
-export default function Produtos() {
+const ADD_PRODUTO = gql`
+  mutation AddProduto($type: String!){
+    addProduto(type: $descricao, type: $preco){
+      id
+      descricao
+      preco
+    }
+  }
+`;
 
-  const [data] = useState([
-    {
-      id: 1,
-      descricao: 'Produto 1',
-      preco: '10,00',
-    },
-    {
-      id: 2,
-      descricao: 'Produto 2',
-      preco: '20,00',
-    },
-  ])
+function Produtos(props) {
 
-  const [produto, setProduto] = useState("")
+  const [descricao, setDescricao] = useState("")
   const [preco, setPreco] = useState(0)
 
-  
-  function salvarProduto(){
-      console.log(produto, preco)
+  const [addProduto] = useMutation(ADD_PRODUTO);
+
+
+  const {produtos} = props;
+
+
+  function salvarProduto(e){
+      e.preventDefault();
+      addProduto({ produto: descricao, preco:preco });
+      console.log(descricao, preco)
   }
   
-  function handleProduto(e){
+  function handleDescricao(e){
     e.preventDefault();
-    setProduto(e.target.value)
+    setDescricao(e.target.value)
   }
 
   function handlePreco(preco){
@@ -46,7 +52,7 @@ export default function Produtos() {
         <Col span={6} offset={6}>
             <div>
                 <p className="form-label">Descrição:</p>
-                <Input placeholder="Digite a descrição do produto" onChange={e => handleProduto(e)} />
+                <Input placeholder="Digite a descrição do produto" onChange={e => handleDescricao(e)} />
             </div>
         </Col>
         <Col span={6}>
@@ -61,23 +67,40 @@ export default function Produtos() {
         </Col>
       </Col>
         <Col span={12} offset={6} style={{marginTop: 30, marginBottom:30}}>
-            <Button type="primary" className="btn-submit" block onClick={() => salvarProduto()} >Salvar</Button> 
+            <Button type="primary" className="btn-submit" block onClick={e => salvarProduto(e)} >Salvar</Button> 
         </Col>
     </Row>
       <Row>
       <Col span={12} offset={6}>
+      {produtos.loading ?
+        <p>Carregando</p>
+        :
       <List
       header={<div><strong>Lista de Produtos</strong></div>}
       bordered
-      dataSource={data}
-      renderItem={item => (
+      dataSource={produtos.allProdutoses}
+      renderItem={(item, index) => (
         <List.Item>
-          <ListProdutos item={item}/>
+          <ListProdutos item={item} index={index}/>
         </List.Item>
       )}
-    /> 
+    />} 
       </Col>
     </Row>
     </>
          );
-}
+
+        }
+const ProdutosQuery = gql`
+  query{
+    allProdutoses{
+      id
+      descricao
+      preco
+    }
+  }      
+`;
+
+export default graphql(ProdutosQuery,{
+  name: 'produtos'
+})(Produtos);

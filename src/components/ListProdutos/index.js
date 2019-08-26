@@ -2,11 +2,11 @@ import React from 'react';
 import {Row, Col, Icon} from 'antd'
 import './styles.css';
 
-const ListProdutos = ({item}) => {
+const ListProdutos = ({item, index}) => {
   return (
     <Row justify="space-between" style={{width:'100%'}}>
       <Col span={2}>
-      <div  className="box-id"><p>{item.id}</p></div>
+      <div  className="box-id"><p>{index + 1 }</p></div>
       </Col>
       <Col span={6}>
       <div className="descricao">{item.descricao}</div>
